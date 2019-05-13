@@ -252,16 +252,16 @@ public class LogView extends LinearLayout implements LogCtrl.View {
 //        filterEditText.setSingleLine();
 //        filterEditText.setGravity(Gravity.CENTER_VERTICAL);
 //        bottomLayout.addView(filterEditText, refreshLayoutParams);
-
-        LinearLayout.LayoutParams spinnerLayoutParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 4);
-        spinnerLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
+//
+//        LinearLayout.LayoutParams spinnerLayoutParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 4);
+//        spinnerLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
 //        spinner.setGravity(Gravity.CENTER);
 //        bottomLayout.addView(spinner, spinnerLayoutParams);
-
-        LinearLayout.LayoutParams refreshButtonLayoutParams =
-                new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2);
-        refreshButtonLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
-
+//
+//        LinearLayout.LayoutParams refreshButtonLayoutParams =
+//                new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2);
+//        refreshButtonLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
+//
 //        settingButton = new Button(getContext());
 //        settingButton.setText("setting");
 //        LinearLayout.LayoutParams settingButtonLayoutParams =
@@ -271,7 +271,7 @@ public class LogView extends LinearLayout implements LogCtrl.View {
 
         mListView = new ListView(getContext());
         mListView.setDivider(new ColorDrawable(Color.WHITE));
-        mListView.setBackgroundDrawable(new ColorDrawable(Color.argb(200, 0, 0, 0)));
+        mListView.setBackgroundDrawable(new ColorDrawable(Color.argb(128, 60, 174, 163)));
         mListView.setStackFromBottom(true);// 设置从底部开始填充
 
         listLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);

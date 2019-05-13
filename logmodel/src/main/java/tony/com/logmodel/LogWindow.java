@@ -87,7 +87,8 @@ public class LogWindow {
                 params.format = PixelFormat.RGBA_8888;
                 params.type = WindowManager.LayoutParams.TYPE_APPLICATION;
                 params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
-                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+//                params.width = WindowManager.LayoutParams.MATCH_PARENT;
+                params.width = LogUtils.diptopx(context, 240);
                 params.height = LogUtils.diptopx(context, (int) extradata.get("heidth"));
 
             }
