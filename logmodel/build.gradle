@@ -2,6 +2,8 @@
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.punxch'
 
 android {
     compileSdkVersion 23
