@@ -1,12 +1,12 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel.control;
+package com.wesley.logmodel.control;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import tony.com.logmodel.model.TraceObject;
+import com.wesley.logmodel.model.TraceObject;
 
 /**
  * Created by sanyinchen on 15/11/24.

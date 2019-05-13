@@ -1,17 +1,15 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel.control;
+package com.wesley.logmodel.control;
 
 import java.util.List;
 
-import android.util.Log;
-import android.view.View;
-import tony.com.logmodel.LogConfig;
-import tony.com.logmodel.LogView;
-import tony.com.logmodel.model.LogManager;
-import tony.com.logmodel.model.TraceLevel;
-import tony.com.logmodel.model.TraceObject;
+import com.wesley.logmodel.LogConfig;
+import com.wesley.logmodel.LogView;
+import com.wesley.logmodel.model.LogManager;
+import com.wesley.logmodel.model.TraceLevel;
+import com.wesley.logmodel.model.TraceObject;
 
 /**
  * Created by sanyinchen on 15/11/24.

@@ -1,11 +1,11 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel;
+package com.wesley.logmodel;
 
 import java.io.Serializable;
 
-import tony.com.logmodel.model.TraceLevel;
+import com.wesley.logmodel.model.TraceLevel;
 
 /**
  * Created by sanyinchen on 15/11/24.

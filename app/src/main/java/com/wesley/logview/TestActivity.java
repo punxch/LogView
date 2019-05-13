@@ -1,7 +1,7 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logview;
+package com.wesley.logview;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -14,7 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import tony.com.logmodel.LogWindow;
+import com.wesley.logmodel.LogWindow;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -36,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
         webView.setWebChromeClient(new DefaultWebChromeClient());
         webView.setWebViewClient(new DefaultWebViewClient());
         // webView.loadUrl("http://www.sanyinchenblog.com/");
-        webView.loadUrl("https://plus.google.com/u/0/100465464266192894461/posts");
+        webView.loadUrl("https://plus.google.wesley/u/0/100465464266192894461/posts");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webView.setWebContentsDebuggingEnabled(true);
         }

@@ -1,13 +1,13 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel.model;
+package com.wesley.logmodel.model;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import android.util.Log;
-import tony.com.logmodel.LogConfig;
+import com.wesley.logmodel.LogConfig;
 
 /**
  * Created by sanyinchen on 15/11/24.

@@ -1,11 +1,9 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel.adpater;
+package com.wesley.logmodel.adpater;
 
 import java.util.List;
-
-import org.w3c.dom.Text;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import tony.com.logmodel.model.TraceLevel;
-import tony.com.logmodel.model.TraceObject;
+import com.wesley.logmodel.model.TraceLevel;
+import com.wesley.logmodel.model.TraceObject;
 
 /**
  * Created by sanyinchen on 15/11/25.

@@ -1,43 +1,33 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel;
+package com.wesley.logmodel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import tony.com.logmodel.CommonUtils.LogUtils;
-import tony.com.logmodel.adpater.SimpleTextAdapter;
-import tony.com.logmodel.control.LogCtrl;
-import tony.com.logmodel.model.LogCat;
-import tony.com.logmodel.model.LogMainThread;
-import tony.com.logmodel.model.LogManager;
-import tony.com.logmodel.model.TraceLevel;
-import tony.com.logmodel.model.TraceObject;
+import com.wesley.logmodel.CommonUtils.LogUtils;
+import com.wesley.logmodel.adpater.SimpleTextAdapter;
+import com.wesley.logmodel.control.LogCtrl;
+import com.wesley.logmodel.model.LogCat;
+import com.wesley.logmodel.model.LogMainThread;
+import com.wesley.logmodel.model.LogManager;
+import com.wesley.logmodel.model.TraceLevel;
+import com.wesley.logmodel.model.TraceObject;
 
 /**
  * Created by sanyinchen on 15/11/24.

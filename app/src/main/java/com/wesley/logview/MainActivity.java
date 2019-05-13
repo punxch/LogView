@@ -1,7 +1,7 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logview;
+package com.wesley.logview;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import tony.com.logmodel.LogConfig;
-import tony.com.logmodel.LogView;
-import tony.com.logmodel.LogWindow;
+import com.wesley.logmodel.LogConfig;
+import com.wesley.logmodel.LogWindow;
 
 public class MainActivity extends AppCompatActivity {
 

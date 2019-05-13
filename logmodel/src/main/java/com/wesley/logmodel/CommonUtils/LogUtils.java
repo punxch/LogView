@@ -1,7 +1,7 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel.CommonUtils;
+package com.wesley.logmodel.CommonUtils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;

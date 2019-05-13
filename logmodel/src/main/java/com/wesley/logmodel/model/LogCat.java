@@ -1,7 +1,7 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel.model;
+package com.wesley.logmodel.model;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

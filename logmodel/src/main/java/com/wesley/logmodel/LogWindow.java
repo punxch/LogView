@@ -1,7 +1,7 @@
 /*
  * Copyright (C) Apache licence, Inc. All Rights Reserved.
  */
-package tony.com.logmodel;
+package com.wesley.logmodel;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
@@ -18,9 +18,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import tony.com.logmodel.CommonUtils.LogUtils;
+import com.wesley.logmodel.CommonUtils.LogUtils;
 
 /**
  * Created by sanyinchen on 15/11/25.
