@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import tony.com.logmodel.LogConfig;
 import tony.com.logmodel.LogView;
 import tony.com.logmodel.LogWindow;
 
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         startActivityButton = (Button) findViewById(R.id.startActivity);
         finishTestButton = (Button) findViewById(R.id.finishActivity);
         final LogWindow logWindow = new LogWindow(this, getApplication()).setregisterLifeCycleInStop(false);
+        LogConfig cfg = new LogConfig().setTextSizeInPx(10F);
+        logWindow.setLogCOnfig(cfg);
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -93,7 +93,6 @@ public class LogWindow {
             }
             isAdd = true;
             if (logView == null) {
-
                 logView = new LogView(context, extradata);
             }
             if (onTouchListener == null) {
@@ -104,7 +103,6 @@ public class LogWindow {
 
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
-
                             case MotionEvent.ACTION_DOWN:
                                 lastX = (int) event.getRawX();
                                 lastY = (int) event.getRawY();
@@ -253,7 +251,6 @@ public class LogWindow {
                 }
             });
             wm.addView(logView, params);
-
         }
     }
 }

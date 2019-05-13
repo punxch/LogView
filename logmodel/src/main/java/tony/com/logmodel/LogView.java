@@ -44,10 +44,10 @@ import tony.com.logmodel.model.TraceObject;
  */
 public class LogView extends LinearLayout implements LogCtrl.View {
 
-    private Button settingButton;
-    private EditText filterEditText;
-    private LinearLayout bottomLayout;
-    private Spinner spinner;
+//    private Button settingButton;
+//    private EditText filterEditText;
+//    private LinearLayout bottomLayout;
+//    private Spinner spinner;
     private ListView mListView;
     private SimpleTextAdapter simpleTextAdapter;
     private List<TraceObject> data;
@@ -113,57 +113,57 @@ public class LogView extends LinearLayout implements LogCtrl.View {
 
         ArrayAdapter<TraceLevel> adapter =
                 new ArrayAdapter<TraceLevel>(getContext(), android.R.layout.simple_list_item_1, TraceLevel.values());
-        spinner.setAdapter(adapter);
-        spinner.setSelection(0);
+//        spinner.setAdapter(adapter);
+//        spinner.setSelection(0);
+//
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if (logCtrl != null && position != 1) {
+//                    logCtrl.updateFilterTraceLevel((TraceLevel) parent.getItemAtPosition(position));
+//                }
+//                if (logCtrl != null && position == 1) {
+//
+//                    logCtrl.updateFilterTraceLevel((TraceLevel) parent.getItemAtPosition(position));
+//                    logCtrl.updateFilter("console");
+//                    filterEditText.setText("console");
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (logCtrl != null && position != 1) {
-                    logCtrl.updateFilterTraceLevel((TraceLevel) parent.getItemAtPosition(position));
-                }
-                if (logCtrl != null && position == 1) {
-
-                    logCtrl.updateFilterTraceLevel((TraceLevel) parent.getItemAtPosition(position));
-                    logCtrl.updateFilter("console");
-                    filterEditText.setText("console");
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        filterEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                logCtrl.updateFilter(s.toString().trim());
-                updateView();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        settingButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (extraSetLayout.getVisibility() == VISIBLE) {
-                    extraSetLayout.setVisibility(GONE);
-                } else {
-                    extraSetLayout.setVisibility(VISIBLE);
-                }
-            }
-        });
+//        filterEditText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                logCtrl.updateFilter(s.toString().trim());
+//                updateView();
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
+//
+//        settingButton.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (extraSetLayout.getVisibility() == VISIBLE) {
+//                    extraSetLayout.setVisibility(GONE);
+//                } else {
+//                    extraSetLayout.setVisibility(VISIBLE);
+//                }
+//            }
+//        });
 
         heidthSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -235,39 +235,39 @@ public class LogView extends LinearLayout implements LogCtrl.View {
         logConfig = new LogConfig();
         logCtrl = new LogCtrl(logManager, this, logConfig);
         logCtrl.resume();
-        filterEditText.setText(logConfig.getFilter());
+//        filterEditText.setText(logConfig.getFilter());
     }
 
     private void initializeView() {
         this.setOrientation(VERTICAL);
 
-        filterEditText = new EditText(getContext());
-        bottomLayout = new LinearLayout(getContext());
-        spinner = new Spinner(getContext());
-
-        LinearLayout.LayoutParams refreshLayoutParams =
-                new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 5);
-        filterEditText.setHint("setFilter");
-        filterEditText.setTextColor(Color.BLACK);
-        filterEditText.setSingleLine();
-        filterEditText.setGravity(Gravity.CENTER_VERTICAL);
-        bottomLayout.addView(filterEditText, refreshLayoutParams);
+//        filterEditText = new EditText(getContext());
+//        bottomLayout = new LinearLayout(getContext());
+////        spinner = new Spinner(getContext());
+//
+//        LinearLayout.LayoutParams refreshLayoutParams =
+//                new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 5);
+//        filterEditText.setHint("setFilter");
+//        filterEditText.setTextColor(Color.BLACK);
+//        filterEditText.setSingleLine();
+//        filterEditText.setGravity(Gravity.CENTER_VERTICAL);
+//        bottomLayout.addView(filterEditText, refreshLayoutParams);
 
         LinearLayout.LayoutParams spinnerLayoutParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 4);
         spinnerLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
-        spinner.setGravity(Gravity.CENTER);
-        bottomLayout.addView(spinner, spinnerLayoutParams);
+//        spinner.setGravity(Gravity.CENTER);
+//        bottomLayout.addView(spinner, spinnerLayoutParams);
 
         LinearLayout.LayoutParams refreshButtonLayoutParams =
                 new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 2);
         refreshButtonLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
 
-        settingButton = new Button(getContext());
-        settingButton.setText("setting");
-        LinearLayout.LayoutParams settingButtonLayoutParams =
-                new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 3);
-        settingButtonLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
-        bottomLayout.addView(settingButton, settingButtonLayoutParams);
+//        settingButton = new Button(getContext());
+//        settingButton.setText("setting");
+//        LinearLayout.LayoutParams settingButtonLayoutParams =
+//                new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 3);
+//        settingButtonLayoutParams.setMargins(LogUtils.diptopx(getContext(), 6), 0, 0, 0);
+//        bottomLayout.addView(settingButton, settingButtonLayoutParams);
 
         mListView = new ListView(getContext());
         mListView.setDivider(new ColorDrawable(Color.WHITE));
@@ -278,9 +278,9 @@ public class LogView extends LinearLayout implements LogCtrl.View {
         listLayoutParams.setMargins(0, LogUtils.diptopx(getContext(), 25), 0, 0);
         this.addView(mListView, listLayoutParams);
 
-        LinearLayout.LayoutParams bottomLayoutLayoutParams =
-                new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        this.addView(bottomLayout, bottomLayoutLayoutParams);
+//        LinearLayout.LayoutParams bottomLayoutLayoutParams =
+//                new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        this.addView(bottomLayout, bottomLayoutLayoutParams);
 
         extraSetLayout = new LinearLayout(getContext());
         extraSetLayout.setOrientation(VERTICAL);

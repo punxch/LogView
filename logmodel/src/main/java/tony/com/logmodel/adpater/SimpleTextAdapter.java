@@ -50,6 +50,7 @@ public class SimpleTextAdapter extends BaseAdapter {
 
             TextView textView = new TextView(context);
             textView.setTextColor(Color.WHITE);
+            textView.setTextSize(10);
             convertView = textView;
             viewHolder = new ViewHolder();
             viewHolder.logview = textView;
