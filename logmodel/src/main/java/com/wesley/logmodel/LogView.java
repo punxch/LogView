@@ -11,13 +11,16 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.wesley.logmodel.CommonUtils.LogUtils;
@@ -39,6 +42,8 @@ public class LogView extends LinearLayout implements LogCtrl.View {
 //    private LinearLayout bottomLayout;
 //    private Spinner spinner;
     private ListView mListView;
+    private RelativeLayout mRootLayout;
+    private LinearLayout mParentLayout;
     private SimpleTextAdapter simpleTextAdapter;
     private List<TraceObject> data;
     private LogCtrl logCtrl;
@@ -155,64 +160,64 @@ public class LogView extends LinearLayout implements LogCtrl.View {
 //            }
 //        });
 
-        heidthSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (changeWindowListener != null) {
-                    changeWindowListener.changeWindowHeight(seekBar.getProgress());
-                }
-            }
-        });
-
-        widthSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (changeWindowListener != null) {
-                    changeWindowListener.changeWindowsWidth(seekBar.getProgress());
-                }
-            }
-        });
-
-        touchAreaSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                listLayoutParams.setMargins(0, LogUtils.diptopx(getContext(), progress), 0, 0);
-                updateView();
-                //                if (changeWindowListener != null) {
-                //                    changeWindowListener.changeTouchArea(progress);
-                //                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+//        heidthSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//                if (changeWindowListener != null) {
+//                    changeWindowListener.changeWindowHeight(seekBar.getProgress());
+//                }
+//            }
+//        });
+//
+//        widthSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//                if (changeWindowListener != null) {
+//                    changeWindowListener.changeWindowsWidth(seekBar.getProgress());
+//                }
+//            }
+//        });
+//
+//        touchAreaSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                listLayoutParams.setMargins(0, LogUtils.diptopx(getContext(), progress), 0, 0);
+//                updateView();
+//                //                if (changeWindowListener != null) {
+//                //                    changeWindowListener.changeTouchArea(progress);
+//                //                }
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
 
     }
 
@@ -231,6 +236,11 @@ public class LogView extends LinearLayout implements LogCtrl.View {
     private void initializeView() {
         this.setOrientation(VERTICAL);
 
+        mRootLayout = new RelativeLayout(getContext());
+        mRootLayout.setGravity(Gravity.END);
+        LinearLayout.LayoutParams widthParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        this.addView(mRootLayout, widthParams);
 //        filterEditText = new EditText(getContext());
 //        bottomLayout = new LinearLayout(getContext());
 ////        spinner = new Spinner(getContext());
@@ -264,67 +274,103 @@ public class LogView extends LinearLayout implements LogCtrl.View {
         mListView.setBackgroundDrawable(new ColorDrawable(Color.argb(128, 60, 174, 163)));
         mListView.setStackFromBottom(true);// 设置从底部开始填充
 
-        listLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        listLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1);
         listLayoutParams.setMargins(0, LogUtils.diptopx(getContext(), 25), 0, 0);
-        this.addView(mListView, listLayoutParams);
+        mRootLayout.addView(mListView, listLayoutParams);
+
+        // 添加按钮
+        int textSize = 16;
+        int textColor = Color.GRAY;
+        int backgroundColor = Color.MAGENTA;
+        Button btn = new Button(getContext());
+        btn.setBackgroundColor((backgroundColor >= 0) ? backgroundColor : Color.TRANSPARENT);
+        btn.setTextColor((textColor >= 0) ? textColor : Color.BLACK);
+        btn.setTextSize((textSize >= 16) ? textSize : 24);
+        btn.setText("Hide");
+        btn.setGravity(Gravity.END);
+        btn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((mListView.getVisibility() & (GONE | INVISIBLE)) != 0) {
+                    mListView.setVisibility(VISIBLE);
+                    mRootLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    if (changeWindowListener != null) {
+                        changeWindowListener.restoreHeight();
+                    }
+                } else {
+                    mListView.setVisibility(GONE);
+                    mRootLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    if (changeWindowListener != null) {
+                        changeWindowListener.changeWindowHeight(0);
+                    }
+                }
+            }
+        });
+
+        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        btn.setLayoutParams(rlp);
+
+        mRootLayout.addView(btn);
 
 //        LinearLayout.LayoutParams bottomLayoutLayoutParams =
 //                new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //        this.addView(bottomLayout, bottomLayoutLayoutParams);
 
-        extraSetLayout = new LinearLayout(getContext());
-        extraSetLayout.setOrientation(VERTICAL);
-        // 宽度进读条设置
-        LinearLayout widthLayout = new LinearLayout(getContext());
-        TextView widthlab = new TextView(getContext());
-        widthlab.setText("控件宽度:");
-        LinearLayout.LayoutParams widthParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        widthLayout.addView(widthlab, widthParams);
-        //widthProgeressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
-        widthSeekBar = new SeekBar(getContext());
-        widthSeekBar.setMax(LogUtils.getDevDispplay(getContext())[0]);
-        widthSeekBar.setProgress(LogUtils.getDevDispplay(getContext())[0]);
-        LinearLayout.LayoutParams widthProgressBarParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-        widthLayout.addView(widthSeekBar, widthProgressBarParams);
-        extraSetLayout.addView(widthLayout);
+//        extraSetLayout = new LinearLayout(getContext());
+//        extraSetLayout.setOrientation(VERTICAL);
+//        // 宽度进读条设置
+//        LinearLayout widthLayout = new LinearLayout(getContext());
+//        TextView widthlab = new TextView(getContext());
+//        widthlab.setText("控件宽度:");
+//        LinearLayout.LayoutParams widthParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+//        widthLayout.addView(widthlab, widthParams);
+//        //widthProgeressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
+//        widthSeekBar = new SeekBar(getContext());
+//        widthSeekBar.setMax(LogUtils.getDevDispplay(getContext())[0]);
+//        widthSeekBar.setProgress(LogUtils.getDevDispplay(getContext())[0]);
+//        LinearLayout.LayoutParams widthProgressBarParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+//        widthLayout.addView(widthSeekBar, widthProgressBarParams);
+//        extraSetLayout.addView(widthLayout);
 
         // 高度进度条设置
-        LinearLayout heightLayout = new LinearLayout(getContext());
-        TextView heigthlab = new TextView(getContext());
-        heigthlab.setText("控件高度:");
-        LinearLayout.LayoutParams heigthParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        heightLayout.addView(heigthlab, heigthParams);
-        // heidthProgressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
-
-        heidthSeekBar = new SeekBar(getContext());
-        heidthSeekBar.setMax(LogUtils.getDevDispplay(getContext())[1]);
-        heidthSeekBar.setProgress((int) extraData.get("width"));
-
-        LinearLayout.LayoutParams heidthProgressBarParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-        heightLayout.addView(heidthSeekBar, heidthProgressBarParams);
-        extraSetLayout.addView(heightLayout);
+//        LinearLayout heightLayout = new LinearLayout(getContext());
+//        TextView heigthlab = new TextView(getContext());
+//        heigthlab.setText("控件高度:");
+//        LinearLayout.LayoutParams heigthParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+//        heightLayout.addView(heigthlab, heigthParams);
+//        // heidthProgressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
+//
+//        heidthSeekBar = new SeekBar(getContext());
+//        heidthSeekBar.setMax(LogUtils.getDevDispplay(getContext())[1]);
+//        heidthSeekBar.setProgress((int) extraData.get("width"));
+//
+//        LinearLayout.LayoutParams heidthProgressBarParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+//        heightLayout.addView(heidthSeekBar, heidthProgressBarParams);
+//        extraSetLayout.addView(heightLayout);
 
         // 触摸区域设置
-        LinearLayout touchAreaLayout = new LinearLayout(getContext());
-        TextView touchLab = new TextView(getContext());
-        touchLab.setText("触摸区域:");
-        LinearLayout.LayoutParams touchParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        touchAreaLayout.addView(touchLab, touchParams);
-        // heidthProgressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
+//        LinearLayout touchAreaLayout = new LinearLayout(getContext());
+//        TextView touchLab = new TextView(getContext());
+//        touchLab.setText("触摸区域:");
+//        LinearLayout.LayoutParams touchParams = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT);
+//        touchAreaLayout.addView(touchLab, touchParams);
+//        // heidthProgressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
+//
+//        touchAreaSeekBar = new SeekBar(getContext());
+//        touchAreaSeekBar.setMax((int) extraData.get("touchAreaMax"));
+//        touchAreaSeekBar.setProgress((int) extraData.get("touchArea"));
+//
+//        LinearLayout.LayoutParams touchAreaSeekBarParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+//        touchAreaLayout.addView(touchAreaSeekBar, touchAreaSeekBarParams);
+//        extraSetLayout.addView(touchAreaLayout);
+//        this.addView(extraSetLayout);
 
-        touchAreaSeekBar = new SeekBar(getContext());
-        touchAreaSeekBar.setMax((int) extraData.get("touchAreaMax"));
-        touchAreaSeekBar.setProgress((int) extraData.get("touchArea"));
-
-        LinearLayout.LayoutParams touchAreaSeekBarParams = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-        touchAreaLayout.addView(touchAreaSeekBar, touchAreaSeekBarParams);
-        extraSetLayout.addView(touchAreaLayout);
-        this.addView(extraSetLayout);
-
-        extraSetLayout.setVisibility(GONE);
+//        extraSetLayout.setVisibility(GONE);
         mListView.setFocusable(false);
         mListView.setItemsCanFocus(false);
 
@@ -436,6 +482,8 @@ public class LogView extends LinearLayout implements LogCtrl.View {
         void changeWindowHeight(int height);
 
         void changeWindowsWidth(int width);
+
+        void restoreHeight();
 
     }
 

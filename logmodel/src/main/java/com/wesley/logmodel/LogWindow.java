@@ -15,6 +15,7 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,11 +37,12 @@ public class LogWindow {
     private boolean registerLifeCycleInStop = false;
     private LogConfig logConfig;
     private int INITIALHEIGHT = 5;
-    private int MINHEIGHT = 170;
+    private int MINHEIGHT = 40;
     private int MAXHEIGHTOFFSET = 10;
     private int INITIALTOPUCH = 25;
     private int MAXTOUCHAREA = 50;
     private int MINWEDITH = 100;
+    private int ACTURE_HEIGHT = 0;
     private LogView.ChangeWindowListener changeWindowListener;
 
     public LogWindow setregisterLifeCycleInStop(boolean registerLifeCycleInStopn) {
@@ -88,8 +90,8 @@ public class LogWindow {
                 params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
 //                params.width = WindowManager.LayoutParams.MATCH_PARENT;
                 params.width = LogUtils.diptopx(context, 240);
-                params.height = LogUtils.diptopx(context, (int) extradata.get("heidth"));
-
+                ACTURE_HEIGHT = LogUtils.diptopx(context, (int) extradata.get("heidth"));
+                params.height = ACTURE_HEIGHT;
             }
             isAdd = true;
             if (logView == null) {
@@ -101,6 +103,7 @@ public class LogWindow {
                     int paramX, paramY;
                     int startX, startY;
 
+                    @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN:
@@ -154,6 +157,11 @@ public class LogWindow {
                         wm.updateViewLayout(logView, params);
                     }
 
+                    @Override
+                    public void restoreHeight() {
+                        params.height = ACTURE_HEIGHT;
+                        wm.updateViewLayout(logView, params);
+                    }
                 };
             }
 
