@@ -89,7 +89,7 @@ public class LogWindow {
                 params.type = WindowManager.LayoutParams.TYPE_APPLICATION;
                 params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
 //                params.width = WindowManager.LayoutParams.MATCH_PARENT;
-                params.width = LogUtils.diptopx(context, 240);
+                params.width = LogUtils.diptopx(context, 200);
                 ACTURE_HEIGHT = LogUtils.diptopx(context, (int) extradata.get("heidth"));
                 params.height = ACTURE_HEIGHT;
             }
